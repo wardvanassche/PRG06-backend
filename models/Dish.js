@@ -4,6 +4,7 @@ const dishSchema = new mongoose.Schema({
     dish: {type: String},
     kitchen: {type: String},
     author: {type: String},
+    description: {type: String},
 },  {
     toJSON: {
         virtuals: true,
