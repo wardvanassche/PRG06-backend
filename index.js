@@ -20,8 +20,9 @@ app.use((req, res, next) => {
 })
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
     next();
 });
 
