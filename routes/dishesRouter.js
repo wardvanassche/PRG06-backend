@@ -27,14 +27,14 @@ dishesRouter.get('/:id', async (req, res) => {
     const id = req.params.id;
     const dish = await Dish.findById(id);
 
-    if(!dish) {
-        res.status(404).json( { message: 'dish not found' } );
+    if (!dish) {
+        res.status(404).json({message: 'dish not found'});
     } else {
         res.status(200).send(dish);
     }
 });
 
-dishesRouter.post('/seed/:amount', async(req, res) => {
+dishesRouter.post('/seed/:amount', async (req, res) => {
 
     await Dish.deleteMany();
 
@@ -51,7 +51,7 @@ dishesRouter.post('/seed/:amount', async(req, res) => {
 
         await dish.save();
     }
-    res.status(201).json( { message: 'dish(es) seeded' });
+    res.status(201).json({message: 'dish(es) seeded'});
 });
 
 dishesRouter.post('/', async (req, res) => {
@@ -68,11 +68,11 @@ dishesRouter.post('/', async (req, res) => {
         description: description,
     });
 
-    if(req.body.dish && req.body.kitchen && req.body.author && req.body.description) {
+    if (req.body.dish && req.body.kitchen && req.body.author && req.body.description) {
         await newDish.save();
-        res.status(201).json({ message: 'dish created' });
+        res.status(201).json({message: 'dish created'});
     } else {
-        res.status(400).json({ error: 'bad request' });
+        res.status(400).json({error: 'bad request'});
     }
 });
 
@@ -85,14 +85,14 @@ dishesRouter.put('/:id', async (req, res) => {
     const author = req.body.author;
     const description = req.body.description;
 
-    if(req.body.dish && req.body.kitchen && req.body.author && req.body.description) {
+    if (req.body.dish && req.body.kitchen && req.body.author && req.body.description) {
         await Dish.findByIdAndUpdate(
             id,
-            { dish, kitchen, author, description, }
+            {dish, kitchen, author, description,}
         )
-        res.status(200).json({ message: 'dish updated' });
+        res.status(200).json({message: 'dish updated'});
     } else {
-        res.status(400).json({ error: 'bad request' });
+        res.status(400).json({error: 'bad request'});
     }
 });
 
@@ -100,11 +100,11 @@ dishesRouter.delete('/:id', async (req, res) => {
     const id = req.params.id;
     const dish = await Dish.findById(id);
 
-    if(!dish) {
-        res.status(404).json( { error: 'dish not found' });
+    if (!dish) {
+        res.status(404).json({error: 'dish not found'});
     } else {
-        await dish.deleteOne({_id : id});
-        res.status(204).json({ message: 'dish deleted' });
+        await dish.deleteOne({_id: id});
+        res.status(204).json({message: 'dish deleted'});
     }
 });
 
